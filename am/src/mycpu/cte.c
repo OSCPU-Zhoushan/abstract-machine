@@ -55,13 +55,12 @@ bool ienabled() {
 }
 
 void iset(bool enable) {
-  uint64_t mip_mtip = 0x080;
+  uint64_t mie_mtie = 0x080;
   if (enable) {
     asm volatile("csrsi mstatus, 8");
-    asm volatile("csrs mip, %0" : : "r"(mip_mtip));
-    // set_csr(mie, MIP_MTIP);
+    asm volatile("csrs mie, %0" : : "r"(mie_mtie));
   } else {
     asm volatile("csrci mstatus, 8");
-    asm volatile("csrc mip, %0" : : "r"(mip_mtip));
+    asm volatile("csrc mie, %0" : : "r"(mie_mtie));
   }
 }
