@@ -90,8 +90,8 @@ CFLAGS   += -O2 -MMD -Wall -Werror -ggdb $(INCFLAGS) \
             -fno-asynchronous-unwind-tables -fno-builtin -fno-stack-protector \
             -Wno-main
 
-ifeq ($(PUTCH), 1)
-	CFLAGS += -DPUTCH_ENABLE=1
+ifeq ($(SIM_ONLY), 1)  # Simulation only (no difftest)
+	CFLAGS += -DSIM_ONLY=1
 endif
 
 CXXFLAGS +=  $(CFLAGS) -ffreestanding -fno-rtti -fno-exceptions
